@@ -21,7 +21,7 @@ lastupdated: "2017-05-31"
 Complete these steps to get started with {{site.data.keyword.composeEnterprise}}:
 
 ## Provisioning a Compose Enterprise service instance
-{: provisioning-compose-enterprise}
+{: provisioning-compose-enterprise-instance}
 
 You can provision a new {{site.data.keyword.composeEnterprise}} instance using the Bluemix console or the command line.
 
