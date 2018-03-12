@@ -6,9 +6,14 @@ Compose Enterprise
 
 	{: .navgroup id="learn"}
 	index.md
+	getting_started.md
 
-	{: .topicgroup }
-	Related links
-		[Compose Help](https://help.compose.com)
-		[Compose Articles](https://www.compose.com/articles/)
+	{: .topicgroup}
+	The Service Dashboard
+		dashboard-overview.md
 	{: .navgroup-end}
+	
+	{: .navgroup id="howto"}
+	deploying.md
+
+	
