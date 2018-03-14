@@ -14,7 +14,7 @@ lastupdated: "2018-02-20"
 # Getting started tutorial
 {: #getting-started}
 
-Complete these steps to get started with {{site.data.keyword.composeEnterprise}}:
+Complete these steps to get started with {{site.data.keyword.composeEnterprise_full}}:
 
 ## Provisioning a {{site.data.keyword.composeEnterprise}} service instance
 {: #provisioning-compose-enterprise-instance}
