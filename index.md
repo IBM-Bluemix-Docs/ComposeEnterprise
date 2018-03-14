@@ -14,7 +14,7 @@ lastupdated: "2018-02-20"
 # About {{site.data.keyword.composeEnterprise}}
 {: #about-compose-enterprise}
 
-{{site.data.keyword.composeEnterprise_full}} for {{site.data.keyword.cloud}} pairs the needs of the enterprises with the agility of a cloud database service, offering database-as-a-service on dedicated physical machines. In this way, {{site.data.keyword.composeEnterprise}} provides the security and isolation required by enterprise level applications.
+{{site.data.keyword.composeEnterprise_full}} for {{site.data.keyword.cloud_notm}} pairs the needs of the enterprises with the agility of a cloud database service, offering database-as-a-service on dedicated physical machines. In this way, {{site.data.keyword.composeEnterprise}} provides the security and isolation required by enterprise level applications.
 
 {{site.data.keyword.composeEnterprise}} creates a single-tenant cluster, offering you dedicated networking and performance for your database deployments. After the cluster has been created, any database created through one of the other Compose database services that are offered by {{site.data.keyword.cloud_notm}} can be provisioned into it:
 
