@@ -1,0 +1,19 @@
+{:navgroup: .navgroup}
+{:topicgroup: .topicgroup}
+
+{: .toc subcollection="compose-enterprise" audience="service" href="/docs/services/ComposeEnterprise/getting_started.html"}
+Compose Enterprise
+
+	{: .navgroup id="learn"}
+	getting_started.md
+	index.md
+
+	{: .topicgroup}
+	Il dashboard del servizio
+		dashboard-overview.md
+	{: .navgroup-end}
+	
+	{: .navgroup id="howto"}
+	deploying.md
+
+	
