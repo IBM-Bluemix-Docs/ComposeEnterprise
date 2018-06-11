@@ -83,7 +83,7 @@ Compose 数据库服务的名称。值必须为以下其中一项：
         <li>`compose-for-etcd`</li>
         <li>`compose-for-janusgraph`</li>
         <li>`compose-for-mongodb`</li>
-        <li>`compose-for-myqsl`</li>
+        <li>`compose-for-mysql`</li>
         <li>`compose-for-postgresql`</li>
         <li>`compose-for-rabbitmq`</li>
         <li>`compose-for-redis`</li>
@@ -115,7 +115,3 @@ Compose 数据库服务的名称。值必须为以下其中一项：
 ```
 bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_id": "123456781234567812345678"}'
 ```
-
-## 后续步骤
-
-还有任何内容要确认吗？

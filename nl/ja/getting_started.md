@@ -58,34 +58,44 @@ lastupdated: "2018-02-20"
   <dl>
     <dt>service_name</dt>
     <dd>
-インスタンスを作成する {{site.data.keyword.cloud_notm}} サービスの名前。値は `compose-enterprise` でなければなりません。</dd>
+    インスタンスを作成する {{site.data.keyword.cloud_notm}} サービスの名前。 値は `compose-enterprise` でなければなりません。
+    </dd>
     <dt>service_plan</dt>
     <dd>
-新しいサービスの価格設定プラン。値は `Enterprise` でなければなりません。</dd>
+    新しいサービスの価格設定プラン。 値は `Enterprise` でなければなりません。
+    </dd>
     <dt>service_instance</dt>
     <dd>
-プロビジョンする新しい Compose データベース・サービスの名前。</dd>
+    プロビジョンする新しい Compose データベース・サービスの名前。
+    </dd>
     <dt>-c start_command</dt>
     <dd>
-start_command に、プロビジョンする {{site.data.keyword.composeEnterprise}} クラスターの詳細情報を組み込みます。これは、配列の形式で設定し、以下の値を組み込むことができます。<dl>
+    start_command に、プロビジョンする {{site.data.keyword.composeEnterprise}} クラスターの詳細情報を組み込みます。 これは、配列の形式で設定し、以下の値を組み込むことができます。
+      <dl>
         <dt>contact_name (必須)</dt>
         <dd>
-{{site.data.keyword.composeEnterprise}} クラスターの所有者の名前。</dd>
+        {{site.data.keyword.composeEnterprise}} クラスターの所有者の名前。
+        </dd>
         <dt>contact_phone (必須)</dt>
         <dd>
-{{site.data.keyword.composeEnterprise}} クラスター所有者の連絡先電話番号。</dd>
+        {{site.data.keyword.composeEnterprise}} クラスター所有者の連絡先電話番号。
+        </dd>
         <dt>contact_email (必須)</dt>
         <dd>
-{{site.data.keyword.composeEnterprise}} クラスター所有者の E メール・アドレス。</dd>
+        {{site.data.keyword.composeEnterprise}} クラスター所有者の E メール・アドレス。
+        </dd>
         <dt>provider_region (必須)</dt>
         <dd>
-{{site.data.keyword.composeEnterprise}} インスタンスをデプロイする SoftLayer データ・センター。有効な値は、'amsterdam'、'chennai'、'dallas'、'frankfurt'、'hong kong'、'houston'、'london'、'melbourne'、'milan'、'montreal'、'oslo'、 'paris'、'queretaro'、'san jose'、'sao paulo'、'seattle'、'seoul'、'singapore'、'sydney'、'tokyo'、'toronto'、'washington dc' です。</dd>
+        {{site.data.keyword.composeEnterprise}} インスタンスをデプロイする SoftLayer データ・センター。 有効な値は、'amsterdam'、'chennai'、'dallas'、'frankfurt'、'hong kong'、'houston'、'london'、'melbourne'、'milan'、'montreal'、'oslo'、 'paris'、'queretaro'、'san jose'、'sao paulo'、'seattle'、'seoul'、'singapore'、'sydney'、'tokyo'、'toronto'、'washington dc' です。
+        </dd>
         <dt>cluster_name (オプション)</dt>
         <dd>
-プロビジョンする {{site.data.keyword.composeEnterprise}} クラスターの名前を選択します。最大長は 19 文字で、英数字だけを使用できます。</dd>
+        プロビジョンする {{site.data.keyword.composeEnterprise}} クラスターの名前を選択します。 最大長は 19 文字で、英数字だけを使用できます。
+        </dd>
         <dt>notes (オプション)</dt>
         <dd>
-クラスターに関連する注釈 (「ベア・メタル」など) を追加します。</dd>
+        クラスターに関連する注釈 (「ベア・メタル」など) を追加します。
+        </dd>
       </dl>
     </dd>
   </dl>
@@ -102,7 +112,7 @@ bx cf create-service compose-enterprise Enterprise myComposeEnterpriseServiceNam
 
 {{site.data.keyword.composeEnterprise}} クラスターのプロビジョンと構成が完了したので、クラスターにデータベースをデプロイする準備が整ったことになります。
 
-既存の Compose データベース {{site.data.keyword.cloud_notm}} サービスから新しいデータベースを作成する時に、Compose {{site.data.keyword.cloud_notm}} データベースを {{site.data.keyword.composeEnterprise}} クラスターにデプロイできます。{{site.data.keyword.cloud_notm}} コンソールまたはコマンド・ラインを使用することができます。データベースのデプロイ方法の詳細については、[{{site.data.keyword.composeEnterprise}} クラスターへの Compose データベースのデプロイ](./deploying.html)を参照してください。
+既存の Compose データベース {{site.data.keyword.cloud_notm}} サービスから新しいデータベースを作成する時に、Compose {{site.data.keyword.cloud_notm}} データベースを {{site.data.keyword.composeEnterprise}} クラスターにデプロイできます。 {{site.data.keyword.cloud_notm}} コンソールまたはコマンド・ラインを使用することができます。 データベースのデプロイ方法の詳細については、[{{site.data.keyword.composeEnterprise}} クラスターへの Compose データベースのデプロイ](./deploying.html)を参照してください。
 
 
 

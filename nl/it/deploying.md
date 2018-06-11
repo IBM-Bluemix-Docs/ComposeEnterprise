@@ -83,7 +83,7 @@ Il nome del servizio del database Compose. Il valore deve essere uno dei seguent
         <li>`compose-for-etcd`</li>
         <li>`compose-for-janusgraph`</li>
         <li>`compose-for-mongodb`</li>
-        <li>`compose-for-myqsl`</li>
+        <li>`compose-for-mysql`</li>
         <li>`compose-for-postgresql`</li>
         <li>`compose-for-rabbitmq`</li>
         <li>`compose-for-redis`</li>
@@ -99,7 +99,7 @@ Il piano dei prezzi per il nuovo servizio. Questo valore deve essere `Enterprise
 <dd>
 Il nome del nuovo servizio Compose Database di cui vuoi eseguire il provisioning.
 </dd>
-<dt>[-c PARAMETERS_AS_JSON] (obligatorio)</dt>
+<dt>[-c PARAMETERS_AS_JSON] (obbligatorio)</dt>
 <dd>
 I parametri vengono formattati come un array e devono contenere i seguenti valori:
     <dl>
@@ -115,7 +115,3 @@ Ad esempio, per distribuire un servizio {{site.data.keyword.composeForElasticsea
 ```
 bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_id": "123456781234567812345678"}'
 ```
-
-## Passi successivi
-
-Qualsiasi TBC?

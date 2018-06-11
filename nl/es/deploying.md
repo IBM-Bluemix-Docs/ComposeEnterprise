@@ -83,7 +83,7 @@ El nombre del servicio de base de datos de Compose. El valor debe ser uno de los
         <li>`compose-for-etcd`</li>
         <li>`compose-for-janusgraph`</li>
         <li>`compose-for-mongodb`</li>
-        <li>`compose-for-myqsl`</li>
+        <li>`compose-for-mysql`</li>
         <li>`compose-for-postgresql`</li>
         <li>`compose-for-rabbitmq`</li>
         <li>`compose-for-redis`</li>
@@ -115,7 +115,3 @@ Por ejemplo, para desplegar un servicio de {{site.data.keyword.composeForElastic
 ```
 bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_id": "123456781234567812345678"}'
 ```
-
-## Pasos siguientes
-
-¿Cualquier TBC?

@@ -77,13 +77,13 @@ Les options de la commande sont les suivantes :
 <dl>
 <dt>nom_service (requis)</dt>
 <dd>
-Nom du service de base de données Compose. Il doit s'agir de l'une des valeurs suivantes :
+Nom du service de base de données Compose. Il doit s'agir de l'une des valeurs suivantes : 
     <ul>
         <li>`compose-for-elasticsearch`</li>
         <li>`compose-for-etcd`</li>
         <li>`compose-for-janusgraph`</li>
         <li>`compose-for-mongodb`</li>
-        <li>`compose-for-myqsl`</li>
+        <li>`compose-for-mysql`</li>
         <li>`compose-for-postgresql`</li>
         <li>`compose-for-rabbitmq`</li>
         <li>`compose-for-redis`</li>
@@ -93,7 +93,7 @@ Nom du service de base de données Compose. Il doit s'agir de l'une des valeurs 
 </dd>
 <dt>plan_service (requis)</dt>
 <dd>
-    Plan de tarification du nouveau service. La valeur de cette option doit être `Enterprise` pour déployer la base de données dans un cluster {{site.data.keyword.composeEnterprise}}.
+Plan de tarification du nouveau service. La valeur de cette option doit être `Enterprise` pour déployer la base de données dans un cluster {{site.data.keyword.composeEnterprise}}.
 </dd>
 <dt>instance_service (requis)</dt>
 <dd>
@@ -115,7 +115,3 @@ Par exemple, pour déployer un service {{site.data.keyword.composeForElasticsear
 ```
 bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_id": "123456781234567812345678"}'
 ```
-
-## Etapes suivantes
-
-Rien à confirmer ?

@@ -23,13 +23,13 @@ Sie können eine neue {{site.data.keyword.composeEnterprise}}-Instanz über die 
 
 **Hinweis:** Es kann zwischen 5-7 Werktage bis zur Bereitstellung Ihres {{site.data.keyword.composeEnterprise}}-Clusters dauern.
 
-##  {{site.data.keyword.composeEnterprise}}-Serviceinstanz über die {{site.data.keyword.cloud_notm}}-Konsole bereitstellen
+## {{site.data.keyword.composeEnterprise}}-Serviceinstanz über die {{site.data.keyword.cloud_notm}}-Konsole bereitstellen
 
-[Erstellen Sie eine {{site.data.keyword.composeEnterprise}}-Instanz](https://console.{DomainName}/catalog/services/compose-enterprise/) und achten Sie darauf, dass Sie alle Felder ausfüllen. 
+[Erstellen Sie eine {{site.data.keyword.composeEnterprise}}-Instanz](https://console.{DomainName}/catalog/services/compose-enterprise/) und achten Sie darauf, dass Sie alle Felder ausfüllen.
 
 **Hinweise:**
 - Der Name Ihres {{site.data.keyword.composeEnterprise}}-Clusters darf maximal 19 Zeichen lang sein und nur alphanumerische Zeichen enthalten.
-- Wenn Sie eine *Cloud-Provider-Region* wählen, ist der ausgewählte Standort das SoftLayer-Rechenzentrum, in dem die {{site.data.keyword.composeEnterprise}}-Instanz bereitgestellt wird. 
+- Wenn Sie eine *Cloud-Provider-Region* wählen, ist der ausgewählte Standort das SoftLayer-Rechenzentrum, in dem die {{site.data.keyword.composeEnterprise}}-Instanz bereitgestellt wird.
 
 
 ## {{site.data.keyword.composeEnterprise}}-Serviceinstanz über die Befehlszeile bereitstellen

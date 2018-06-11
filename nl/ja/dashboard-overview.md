@@ -2,7 +2,7 @@
 
 Copyright:
   Years: 2017, 2018
-lastupdated: "2018-01-30"
+lastupdated: "2018-02-19"
 ---
 
 {:new_window: target="_blank"}
@@ -27,7 +27,7 @@ _「クラスターの詳細」_ パネルに、{{site.data.keyword.composeEnter
 
 ### タイプ
 
-その他の Compose {{site.data.keyword.cloud_notm}} サービスは、このフィールドを使用して、サービスが提供するデータベースのタイプと、サービスが使用するデータベースのバージョンを表示します。{{site.data.keyword.composeEnterprise}} サービスの場合は、値が常に_エンタープライズ・クラスター_になります。
+その他の Compose {{site.data.keyword.cloud_notm}} サービスは、このフィールドを使用して、サービスが提供するデータベースのタイプと、サービスが使用するデータベースのバージョンを表示します。 {{site.data.keyword.composeEnterprise}} サービスの場合は、値が常に_エンタープライズ・クラスター_になります。
 
 ### 状況
 
@@ -45,7 +45,7 @@ _「クラスターの詳細」_ パネルに、{{site.data.keyword.composeEnter
 
 ### ファウンデーション・エンドポイント
 
-ファウンデーション・エンドポイントは、クラスターが存在する地域とクラスター ID で構成されます。すべてのエンドポイントの先頭にあります。
+ファウンデーション・エンドポイントは、クラスターが存在する地域とクラスター ID で構成されます。 すべてのエンドポイントの先頭にあります。
 
 ### クラスター ID
 

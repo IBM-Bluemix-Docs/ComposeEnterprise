@@ -2,7 +2,7 @@
 
 Copyright:
   Years: 2017, 2018
-lastupdated: "2018-01-30"
+lastupdated: "2018-02-19"
 ---
 
 {:new_window: target="_blank"}
@@ -15,25 +15,25 @@ lastupdated: "2018-01-30"
 
 Puoi gestire il tuo servizio {{site.data.keyword.composeEnterprise_full}} dal dashboard del servizio.
 
-## Dettagli cluster
+## Cluster Details
 
 Il pannello _Cluster Details_ mostra i dettagli del tuo cluster {{site.data.keyword.composeEnterprise}}.
 
-![Dettagli cluster](./images/enterprise-cluster-details-ready.png "Una vista del pannello dei dettagli del cluster")
+![Cluster Details](./images/enterprise-cluster-details-ready.png "Una vista del pannello dei dettagli del cluster")
 
-### Nome
+### Name
 
 Un identificativo interno per il cluster.
 
-### Tipo
+### Type
 
 Altri servizi Compose {{site.data.keyword.cloud_notm}} utilizzano questo campo per visualizzare il tipo di database offerto dal servizio e la versione del database che il servizio utilizza. Per un servizio {{site.data.keyword.composeEnterprise}}, il valore è sempre _Enterprise Cluster_.
 
-### Stato
+### Status
 
 Lo stato del tuo cluster {{site.data.keyword.composeEnterprise}}.
 
-### Regione
+### Region
 
 La regione {{site.data.keyword.cloud_notm}} in cui risiede il cluster {{site.data.keyword.composeEnterprise}}.
 
@@ -41,9 +41,9 @@ La regione {{site.data.keyword.cloud_notm}} in cui risiede il cluster {{site.dat
 
 Puoi gestire il tuo servizio {{site.data.keyword.composeForElasticsearch}} tramite l'API {{site.data.keyword.cloud_notm}} Compose.
 
-![Dettagli cluster](./images/enterprise-cluster-api.png "Una vista dell'API di gestione dell'istanza")
+![Cluster Details](./images/enterprise-cluster-api.png "Una vista dell'API di gestione dell'istanza")
 
-### Endpoint fondazione 
+### Endpoint fondazione
 
 L'endpoint fondazione è formato dalla regione in cui risiede il cluster e l'ID del cluster. Può essere trovato all'inizio di ogni endpoint.
 

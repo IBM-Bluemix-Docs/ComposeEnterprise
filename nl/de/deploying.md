@@ -77,13 +77,13 @@ Die Befehlsoptionen sind:
 <dl>
 <dt>service_name (erforderlich)</dt>
 <dd>
-Der Name des Compose-Datenbankservice. Einer der folgenden Werte muss angegeben werden:
+Der Name des Compose-Datenbankservice. Einer der folgenden Werte muss angegeben werden: 
     <ul>
         <li>`compose-for-elasticsearch`</li>
         <li>`compose-for-etcd`</li>
         <li>`compose-for-janusgraph`</li>
         <li>`compose-for-mongodb`</li>
-        <li>`compose-for-myqsl`</li>
+        <li>`compose-for-mysql`</li>
         <li>`compose-for-postgresql`</li>
         <li>`compose-for-rabbitmq`</li>
         <li>`compose-for-redis`</li>
@@ -115,7 +115,3 @@ Zum Bereitstellen eines {{site.data.keyword.composeForElasticsearch}}-Service mi
 ```
 bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_id": "123456781234567812345678"}'
 ```
-
-## Nächste Schritte
-
-Anything TBC?

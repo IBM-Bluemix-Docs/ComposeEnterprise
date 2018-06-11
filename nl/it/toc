@@ -1,12 +1,12 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="compose-enterprise" audience="service" href="/docs/services/ComposeEnterprise/getting_started.html"}
+{: .toc subcollection="compose-enterprise" audience="service" href="/docs/services/ComposeEnterprise/index.html"}
 Compose Enterprise
 
 	{: .navgroup id="learn"}
-	getting_started.md
 	index.md
+	getting_started.md
 
 	{: .topicgroup}
 	Il dashboard del servizio

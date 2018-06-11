@@ -77,13 +77,13 @@ As opções de comando são:
 <dl>
 <dt>service_name (obrigatório)</dt>
 <dd>
-O nome do serviço de banco de dados do Compose. O valor deve ser um dos seguintes:
+O nome do serviço de banco de dados do Compose. O valor deve ser um dos seguintes: 
     <ul>
         <li>`compose-for-elasticsearch`</li>
         <li>`compose-for-etcd`</li>
         <li>`compose-for-janusgraph`</li>
         <li>`compose-for-mongodb`</li>
-        <li>`compose-for-myqsl`</li>
+        <li>`compose-for-mysql`</li>
         <li>`compose-for-postgresql`</li>
         <li>`compose-for-rabbitmq`</li>
         <li>`compose-for-redis`</li>
@@ -105,7 +105,7 @@ Os parâmetros são formatados como uma matriz e devem conter os valores a segui
     <dl>
     <dt>cluster_id (necessário)</dt>
     <dd>O ID do cluster do cluster do {{site.data.keyword.composeEnterprise}}. É possível localizar esse valor no painel de sua instância de serviço do {{site.data.keyword.composeEnterprise}}.
-</dd>
+    </dd>
     </dl>
 </dd>
 </dl>
@@ -115,7 +115,3 @@ Por exemplo, para implementar um serviço {{site.data.keyword.composeForElastics
 ```
 bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_id": "123456781234567812345678"}'
 ```
-
-## Etapas seguintes
-
-Qualquer coisa sobre TBC?
