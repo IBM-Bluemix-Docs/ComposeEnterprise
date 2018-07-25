@@ -48,7 +48,7 @@ To create a new instance of a Compose database service and provision it into a {
 
 ## 3. Provision a database into your cluster with the `create-service` command:
 
-Now that you have your `cluster_service_instance_id` you can use the `create-service` command to create an {{site.data.keyword.cloud_notm}} Compose database service and deploy it into your Compose Enterprise cluster.
+Now that you have your `cluster_service_instance_id` you can use the `create-service` command to create an {{site.data.keyword.cloud_notm}} Compose database service and deploy it into your {{site.data.keyword.composeEnterprise}} cluster.
 
 
 ```
