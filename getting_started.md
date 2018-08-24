@@ -19,9 +19,9 @@ Complete these steps to get started with {{site.data.keyword.composeEnterprise}}
 ## Provisioning a {{site.data.keyword.composeEnterprise}} service instance
 {: #provisioning-compose-enterprise-instance}
 
-You can provision a new {{site.data.keyword.composeEnterprise}} instance using the {{site.data.keyword.cloud_notm}} console or the command line.
+You can provision a new {{site.data.keyword.composeEnterprise}} instance by using the {{site.data.keyword.cloud_notm}} console or the command line.
 
-**Note:** It may take up to 5-7 business days for your {{site.data.keyword.composeEnterprise}} cluster to be provisioned.
+**Note:** It can take up to 5-7 business days for your {{site.data.keyword.composeEnterprise}} cluster to be provisioned.
 
 ## Provisioning a {{site.data.keyword.composeEnterprise}} service instance from the {{site.data.keyword.cloud_notm}} console
 
@@ -29,13 +29,13 @@ You can provision a new {{site.data.keyword.composeEnterprise}} instance using t
 
 **Notes:**
 - The name of your {{site.data.keyword.composeEnterprise}} cluster can have a maximum length of 19 characters, and can contain only alphanumeric characters.
-- When you choose a *Cloud Provider Region*, the location that you select is the SoftLayer data center in which the {{site.data.keyword.composeEnterprise}} instance will be deployed.
+- When you choose a *Cloud Provider Region*, the location that you select is the IBM Cloud data center in which the {{site.data.keyword.composeEnterprise}} instance is deployed.
 
 
 ## Provisioning a {{site.data.keyword.composeEnterprise}} service instance from the command line
 
 1. Download and install the [{{site.data.keyword.cloud_notm}} CLI](https://console.{DomainName}/docs/cli/reference/bluemix_cli/download_cli.html) tool.
-2. Log in to {{site.data.keyword.cloud_notm}}
+2. Log in to {{site.data.keyword.cloud_notm}}.
 
   ```
   bx login
@@ -47,13 +47,13 @@ You can provision a new {{site.data.keyword.composeEnterprise}} instance using t
   bx target --cf
   ```
 
-4. Provision an instance of the service with the `create-service` command:
+4. Provision an instance of the service with the `create-service` command.
 
   ```
   bx cf create-service service_name service_plan service_instance -c start_command
   ```
 
-  The command options are:
+### Command options
 
   <dl>
     <dt>service_name</dt>
@@ -86,7 +86,7 @@ You can provision a new {{site.data.keyword.composeEnterprise}} instance using t
         </dd>
         <dt>provider_region (required)</dt>
         <dd>
-        The SoftLayer datacenter in which you want the {{site.data.keyword.composeEnterprise}} instance to be deployed. Valid values are: 'amsterdam', 'chennai', 'dallas', 'frankfurt', 'hong kong', 'houston', 'london', 'melbourne', 'milan', 'montreal', 'oslo', 'paris', 'queretaro', 'san jose', 'sao paulo', 'seattle', 'seoul', 'singapore', 'sydney', 'tokyo', 'toronto', 'washington dc'.
+        The IBM Cloud data center in which you want the {{site.data.keyword.composeEnterprise}} instance to be deployed. Valid values are: <code>amsterdam</code>, <code>chennai</code>, <code>dallas</code>, <code>frankfurt</code>, <code>hong kong</code>, <code>houston</code>, <code>london</code>, <code>melbourne</code>, <code>milan</code>, <code>montreal</code>, <code>oslo</code>, <code>paris</code>, <code>queretaro</code>, <code>san jose</code>, <code>sao paulo</code>, <code>seattle</code>, <code>seoul</code>, <code>singapore</code>, <code>sydney</code>, <code>tokyo</code>, <code>toronto</code>, <code>washington dc</code>.
         </dd>
         <dt>cluster_name (optional)</dt>
         <dd>
@@ -94,25 +94,25 @@ You can provision a new {{site.data.keyword.composeEnterprise}} instance using t
         </dd>
         <dt>notes (optional)</dt>
         <dd>
-        Add any notes relating to your cluster, for example 'Bare Metal'.
+        Add any notes that relate to your cluster, for example <code>Bare Metal</code>.
         </dd>
       </dl>
     </dd>
   </dl>
 
-Sample `bx cf create-service` usage:
+### Sample `bx cf create-service` usage
 
 ```
 bx cf create-service compose-enterprise Enterprise myComposeEnterpriseServiceName -c '{"contact_name": "myName", "contact_phone": "888-888-8888", "contact_email": "myEmail@ibm.com", "provider_region": "dallas", "cluster_name": "myClusterName123", "notes": "Bare Metal" }'
 ```
 
-When your {{site.data.keyword.composeEnterprise}} Cluster is available, you will be able to provision Compose {{site.data.keyword.cloud_notm}} databases into the cluster and enjoy the benefits of auto-scaling databases with encryption at rest and in motion within an isolated cluster.
+When your {{site.data.keyword.composeEnterprise}} Cluster is available, you can provision Compose {{site.data.keyword.cloud_notm}} databases into the cluster and enjoy the benefits of auto-scaling databases with encryption at rest and in motion within an isolated cluster.
 
 ## Next steps.
 
-Now that you have your {{site.data.keyword.composeEnterprise}} cluster provisioned and configured you are ready to deploy databases into the cluster.
+Now that you have your {{site.data.keyword.composeEnterprise}} cluster is provisioned and configured, you are ready to deploy databases into the cluster.
 
-You can deploy a Compose {{site.data.keyword.cloud_notm}} database into a {{site.data.keyword.composeEnterprise}} cluster when you create a new database from any of the existing Compose database {{site.data.keyword.cloud_notm}} services. You can use the {{site.data.keyword.cloud_notm}} console or the command line. For details on how to deploy databases, see [Deploying a Compose database into a {{site.data.keyword.composeEnterprise}} cluster](./deploying.html).
+You can deploy a Compose {{site.data.keyword.cloud_notm}} database into a {{site.data.keyword.composeEnterprise}} cluster when you create a new database from any of the existing Compose database {{site.data.keyword.cloud_notm}} services. You can use the {{site.data.keyword.cloud_notm}} console or the command line. For more information about how to deploy databases, see [Deploying a Compose database into a {{site.data.keyword.composeEnterprise}} cluster](./deploying.html).
 
 
 
