@@ -14,7 +14,7 @@ lastupdated: "2018-04-14"
 # Sobre o {{site.data.keyword.composeEnterprise}}
 {: #about-compose-enterprise}
 
-O {{site.data.keyword.composeEnterprise_full}} for {{site.data.keyword.cloud}} combina as necessidades das empresas com a agilidade de um serviço de banco de dados em nuvem, oferecendo banco de dados como um serviço em máquinas físicas dedicadas. Dessa maneira, o {{site.data.keyword.composeEnterprise}} fornece a segurança e o isolamento necessários para aplicativos de nível corporativo, enquanto permite que você implemente praticamente em qualquer Data Center do IBM Cloud.
+O {{site.data.keyword.composeEnterprise_full}} for {{site.data.keyword.cloud}} pareia as necessidades de empresas com a agilidade de um serviço de banco de dados em nuvem, oferecendo um banco de dados como um serviço em máquinas físicas dedicadas. Dessa maneira, o {{site.data.keyword.composeEnterprise}} fornece a segurança e o isolamento necessários para aplicativos de nível corporativo, enquanto permite que você implemente praticamente em qualquer Data Center do IBM Cloud.
 
 O {{site.data.keyword.composeEnterprise}} cria um cluster de único locatário com criptografia em repouso. Ele oferece a você rede dedicada e desempenho para as suas implementações de banco de dados, bem como a flexibilidade de data center geográfico. Depois que o cluster é criado, qualquer banco de dados criado por meio de um dos outros serviços de banco de dados do Compose oferecidos pelo {{site.data.keyword.cloud_notm}} pode ser provisionado nele:
 

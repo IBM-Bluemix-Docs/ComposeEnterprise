@@ -15,7 +15,7 @@ lastupdated: "2018-02-08"
 
 ## Déploiement à partir de la console {{site.data.keyword.cloud_notm}}
 
-Si vous avez déjà créé un cluster {{site.data.keyword.composeEnterprise_full}} à l'aide d'{{site.data.keyword.cloud}}, vous pouvez mettre votre nouvelle base de données Compose {{site.data.keyword.cloud_notm}} à disposition dans le cluster. Sélectionnez le nom du cluster {{site.data.keyword.composeEnterprise}} dans la liste des emplacements disponibles de la liste déroulante de *sélection d'un emplacement pour le déploiement* lorsque vous créez la nouvelle instance de service de base de données Compose {{site.data.keyword.cloud_notm}}.
+Si vous avez déjà créé un cluster {{site.data.keyword.composeEnterprise_full}} à l'aide d'{{site.data.keyword.cloud_notm}}, vous pouvez mettre votre nouvelle base de données Compose {{site.data.keyword.cloud_notm}} à disposition dans le cluster. Sélectionnez le nom du cluster {{site.data.keyword.composeEnterprise}} dans la liste des emplacements disponibles de la liste déroulante de *sélection d'un emplacement pour le déploiement* lorsque vous créez la nouvelle instance de service de base de données Compose {{site.data.keyword.cloud_notm}}.
 
 ## Déploiement à partir de la ligne de commande
 
@@ -36,18 +36,9 @@ Pour créer une nouvelle instance d'un service de base de données Compose et la
     bx target --cf
     ```
 
-## 2. Obtenez un jeton d'API {{site.data.keyword.cloud_notm}}.
+## 2. Obtention de l'ID d'instance de service de cluster
 
-Pour utiliser l'API {{site.data.keyword.cloud_notm}} Compose, nécessaire pour déployer une base de données dans votre cluster, vous avez besoin d'un jeton d'API {{site.data.keyword.cloud_notm}}. Si vous ne disposez pas d'un jeton d'API utilisable, vous pouvez en créer un comme suit :
-
-1. Connectez-vous au tableau de bord [{{site.data.keyword.cloud_notm}}](console.{DomainName}.bluemix.net).
-2. Sélectionnez **Gérer** -> **Sécurité** -> **Clés d'API {{site.data.keyword.cloud_notm}}**
-3. Cliquez sur **Créer**
-4. Entrez un nom et une description pour votre clé, puis cliquez sur **Créer**. Copiez la clé générée ; vous en aurez besoin ultérieurement.
-
-## 3. Obtention de l'ID de cluster
-
-1. Tout d'abord, vous devez vous procurer l'ID d'instance de service de votre instance {{site.data.keyword.composeEnterprise}} avec la commande suivante :
+1. Vous devez vous procurer l'ID d'instance de service de cluster de votre instance {{site.data.keyword.composeEnterprise}} :
 
     ```
     bx cf service COMPOSE_ENTERPRISE_SERVICE_NAME --guid
@@ -55,17 +46,9 @@ Pour utiliser l'API {{site.data.keyword.cloud_notm}} Compose, nécessaire pour d
 
     La commande renvoie une chaîne. Il s'agit de l'identificateur global unique de l'instance de service, dont vous aurez besoin ultérieurement pour obtenir l'ID de cluster.
 
-2. A l'aide de votre jeton d'API {{site.data.keyword.cloud_notm}}, utilisez l'API {{site.data.keyword.cloud_notm}} Compose pour échanger l'ID d'instance de service contre la valeur d'ID de cluster (`cluster_id`) Compose Enterprise.
+## 3. Mise à disposition d'une base de données dans votre cluster avec la commande `create-service` :
 
-    ```
-    curl -s -X GET -H ‘authorization: Bearer ’$IBM_CLOUD_API_TOKEN -H ‘content-type: application/json’ https://composebroker-dashboard-public.eu-gb.mybluemix.net/api/2016-07/instances/$SERVICE_GUID/
-    ```
-
-    L'objet renvoyé par cet appel API inclut la valeur `cluster_id` dont vous avez besoin.
-
-## 4. Mise à disposition d'une base de données dans votre cluster avec la commande `create-service` :
-
-Maintenant que vous disposez de l'ID de cluster (`cluster_id`), vous pouvez utiliser la commande `create-service` pour créer un service de base de données {{site.data.keyword.cloud_notm}} Compose et le déployer dans votre cluster Compose Enterprise.
+Maintenant que vous disposez de l'ID d'instance de service de cluster (`cluster_service_instance_id`), vous pouvez utiliser la commande `create-service` pour créer le service de base de données {{site.data.keyword.cloud_notm}} Compose et le déployer dans votre cluster {{site.data.keyword.composeEnterprise}}.
 
 
 ```
@@ -101,17 +84,22 @@ Nom du nouveau service de base de données Compose à mettre à disposition.
 </dd>
 <dt>[-c PARAMETERS_AS_JSON] (requis)</dt>
 <dd>
-Les paramètres se présentent sous forme de tableau et doivent contenir les valeurs suivantes :
+Les paramètres se présentent sous forme d'objet JSON et doivent contenir les valeurs suivantes :
     <dl>
-    <dt>cluster_id (requis)</dt>
+    <dt>cluster_service_instance_id</dt>
+    <dd>L''ID d'instance de service de cluster de votre cluster {{site.data.keyword.composeEnterprise}}. Pour obtenir cette valeur, effectuez l'étape 2 de ce guide.
+    </dd>
+    </dl>
+    <dl>
+    <dt>cluster_id</dt>
     <dd>ID de votre cluster {{site.data.keyword.composeEnterprise}}. Cette valeur figure dans le tableau de bord de votre instance de service {{site.data.keyword.composeEnterprise}}.
     </dd>
     </dl>
 </dd>
 </dl>
 
-Par exemple, pour déployer un service {{site.data.keyword.composeForElasticsearch}} nommé 'myComposeForEnterpriseService' dans un cluster {{site.data.keyword.composeEnterprise}}, si `cluster_id` a la valeur '123456781234567812345678', utilisez la commande suivante :
+Par exemple, pour déployer un service {{site.data.keyword.composeForElasticsearch}} nommé 'myComposeForEnterpriseService' dans un cluster {{site.data.keyword.composeEnterprise}}, si `cluster_service_instance_id` a la valeur '12345678-90ab-cdef-1234567890a', utilisez la commande suivante :
 
 ```
-bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_id": "123456781234567812345678"}'
+bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_service_instance_id": "12345678-90ab-cdef-1234567890a"}'
 ```

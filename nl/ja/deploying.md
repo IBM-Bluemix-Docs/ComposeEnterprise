@@ -15,7 +15,7 @@ lastupdated: "2018-02-08"
 
 ## {{site.data.keyword.cloud_notm}} コンソールからのデプロイ
 
-{{site.data.keyword.cloud}} を使用して {{site.data.keyword.composeEnterprise_full}} クラスターをすでに作成している場合は、新しい Compose {{site.data.keyword.cloud_notm}} データベースをそのクラスターにプロビジョンするよう指定できます。 新しい Compose {{site.data.keyword.cloud_notm}} データベース・サービス・インスタンスを作成する時に、*「デプロイメントのロケーションの選択 (Select Location for Deployment)」*ドロップダウンにある使用可能なロケーションのリストから {{site.data.keyword.composeEnterprise}} クラスターの名前を選択してください。
+{{site.data.keyword.cloud_notm}} を使用して {{site.data.keyword.composeEnterprise_full}} クラスターをすでに作成している場合は、新しい Compose {{site.data.keyword.cloud_notm}} データベースをそのクラスターにプロビジョンするよう指定できます。 新しい Compose {{site.data.keyword.cloud_notm}} データベース・サービス・インスタンスを作成する時に、*「デプロイメントのロケーションの選択 (Select Location for Deployment)」*ドロップダウンにある使用可能なロケーションのリストから {{site.data.keyword.composeEnterprise}} クラスターの名前を選択してください。
 
 ## コマンド・ラインからのデプロイ
 
@@ -36,18 +36,9 @@ lastupdated: "2018-02-08"
     bx target --cf
     ```
 
-## 2. {{site.data.keyword.cloud_notm}} API トークンを取得します。
+## 2. クラスター・サービス・インスタンス ID を取得します
 
-データベースをクラスターにデプロイするには {{site.data.keyword.cloud_notm}} Compose API を使用する必要がありますが、この API を使用するには、{{site.data.keyword.cloud_notm}} API トークンが必要です。 使用できる API トークンがない場合は、以下のようにして作成します。
-
-1. [{{site.data.keyword.cloud_notm}}](console.{DomainName}.bluemix.net) ダッシュボードにログインします。
-2. **「管理」**->**「セキュリティー」**->**「{{site.data.keyword.cloud_notm}} API 鍵」**を選択します。
-3. **「作成」**をクリックします。
-4. 鍵の名前と説明を入力し、**「作成」**をクリックします。 生成した鍵をコピーします。この鍵は後で必要になります。
-
-## 3. クラスター ID を取得します。
-
-1. まず、{{site.data.keyword.composeEnterprise}} インスタンスのサービス・インスタンス ID を取得する必要があります。
+1. {{site.data.keyword.composeEnterprise}} インスタンスのクラスター・サービス・インスタンス ID を取得する必要があります。
 
     ```
     bx cf service COMPOSE_ENTERPRISE_SERVICE_NAME --guid
@@ -55,17 +46,9 @@ lastupdated: "2018-02-08"
 
     このコマンドからストリングが返されます。 それがサービス・インスタンスの GUID であり、後でクラスター ID を取得する時に必要になります。
 
-2. {{site.data.keyword.cloud_notm}} API トークンを使用し、{{site.data.keyword.cloud_notm}} Compose API でサービス・インスタンス ID を渡して Compose Enterprise `cluster_id` を取得します。
+## 3. `create-service` コマンドを使用して、データベースをクラスターにプロビジョンします。
 
-    ```
-    curl -s -X GET -H ‘authorization: Bearer ’$IBM_CLOUD_API_TOKEN -H ‘content-type: application/json’ https://composebroker-dashboard-public.eu-gb.mybluemix.net/api/2016-07/instances/$SERVICE_GUID/
-    ```
-
-    この API 呼び出しによって返されるオブジェクトに、目的の `cluster_id` 値が含まれています。
-
-## 4. `create-service` コマンドを使用して、データベースをクラスターにプロビジョンします。
-
-`cluster_id` を取得できたので、`create-service` コマンドを使用して、{{site.data.keyword.cloud_notm}} Compose データベース・サービスを作成して Compose Enterprise クラスターにデプロイできます。
+`cluster_service_instance_id` を取得できたので、`create-service` コマンドを使用して、{{site.data.keyword.cloud_notm}} Compose データベース・サービスを作成して {{site.data.keyword.composeEnterprise}} クラスターにデプロイできます。
 
 
 ```
@@ -101,17 +84,22 @@ Compose データベース・サービスの名前。 値は以下のいずれ�
 </dd>
 <dt>[-c PARAMETERS_AS_JSON] (必須)</dt>
 <dd>
-パラメーターは配列の形式に設定し、以下の値を含める必要があります。
+パラメーターは JSON オブジェクトの形式に設定し、以下のいずれかの値を含める必要があります。
     <dl>
-    <dt>cluster_id (必須)</dt>
+    <dt>cluster_service_instance_id</dt>
+    <dd>{{site.data.keyword.composeEnterprise}} クラスターのクラスター・サービス・インスタンス ID。 このガイドのステップ 2 に従うと、この値を入手することができます。
+    </dd>
+    </dl>
+    <dl>
+    <dt>cluster_id</dt>
     <dd>{{site.data.keyword.composeEnterprise}} クラスターのクラスター ID。 この値は、{{site.data.keyword.composeEnterprise}} サービス・インスタンスのダッシュボードで確認できます。
     </dd>
     </dl>
 </dd>
 </dl>
 
-例えば、myComposeForEnterpriseService という名前の {{site.data.keyword.composeForElasticsearch}} サービスを 123456781234567812345678 という `cluster_id` の {{site.data.keyword.composeEnterprise}} クラスターにデプロイするには、以下のコマンドを使用します。
+例えば、myComposeForEnterpriseService という名前の {{site.data.keyword.composeForElasticsearch}} サービスを 12345678-90ab-cdef-1234567890a という `cluster_service_instance_id` の {{site.data.keyword.composeEnterprise}} クラスターにデプロイするには、以下のコマンドを使用します。
 
 ```
-bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_id": "123456781234567812345678"}'
+bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_service_instance_id": "12345678-90ab-cdef-1234567890a"}'
 ```

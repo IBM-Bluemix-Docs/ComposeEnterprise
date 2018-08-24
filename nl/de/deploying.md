@@ -15,7 +15,7 @@ lastupdated: "2018-02-08"
 
 ## Über die {{site.data.keyword.cloud_notm}}-Konsole bereitstellen
 
-Wenn Sie bereits einen {{site.data.keyword.composeEnterprise_full}}-Cluster mithilfe von {{site.data.keyword.cloud}} erstellt haben, können Sie angeben, dass Ihre neue Compose-Datenbank unter {{site.data.keyword.cloud_notm}} in diesem Cluster bereitgestellt wird. Wählen Sie den Namen des {{site.data.keyword.composeEnterprise}}-Clusters aus der Liste der verfügbaren Positionen im Dropdown-Menü *Standort für die Bereitstellung auswählen* aus, wenn Sie die neue Compose-Datenbankserviceinstanz unter {{site.data.keyword.cloud_notm}} erstellen.
+Wenn Sie bereits einen {{site.data.keyword.composeEnterprise_full}}-Cluster mithilfe von {{site.data.keyword.cloud_notm}} erstellt haben, können Sie angeben, dass Ihre neue Compose-Datenbank unter {{site.data.keyword.cloud_notm}} in diesem Cluster bereitgestellt wird. Wählen Sie den Namen des {{site.data.keyword.composeEnterprise}}-Clusters aus der Liste der verfügbaren Positionen im Dropdown-Menü *Standort für die Bereitstellung auswählen* aus, wenn Sie die neue Compose-Datenbankserviceinstanz unter {{site.data.keyword.cloud_notm}} erstellen.
 
 ## Über die Befehlszeile bereitstellen
 
@@ -36,18 +36,9 @@ Zum Erstellen einer neuen Instanz eines Compose-Datenbankservice und Bereitstell
     bx target --cf
     ```
 
-## 2. Rufen Sie ein {{site.data.keyword.cloud_notm}}-API-Token ab.
+## 2. Rufen Sie die Cluster-Serviceinstanz-ID ab.
 
-Die Verwendung der {{site.data.keyword.cloud_notm}} Compose-API, die Sie zum Bereitstellen der Datenbank in Ihrem Cluster benötigen, erfordert ein {{site.data.keyword.cloud_notm}}-API-Token. Falls Sie noch kein API-Token haben, das Sie verwenden können, können Sie auch eines erstellen:
-
-1. Melden Sie sich beim [{{site.data.keyword.cloud_notm}}](console.{DomainName}.bluemix.net)-Dashboard an.
-2. Wählen Sie **Verwalten** -> **Sicherheit** -> **{{site.data.keyword.cloud_notm}}-API-Schlüssel** aus.
-3. Klicken Sie auf **Erstellen**.
-4. Geben Sie einen Namen und eine Beschreibung für Ihren Schlüssel ein und klicken Sie auf **Erstellen**. Kopieren Sie der generierten Schlüssel - Sie benötigen ihn später noch.
-
-## 3. Rufen Sie die Cluster-ID ab.
-
-1. Zunächst müssen Sie die Serviceinstanz-ID für Ihre {{site.data.keyword.composeEnterprise}}-Instanz abrufen:
+1. Sie müssen die Cluster-Serviceinstanz-ID für Ihre {{site.data.keyword.composeEnterprise}}-Instanz wie folgt abrufen:
 
     ```
     bx cf service COMPOSE_ENTERPRISE_SERVICE_NAME --guid
@@ -55,17 +46,9 @@ Die Verwendung der {{site.data.keyword.cloud_notm}} Compose-API, die Sie zum Ber
 
     Dieser Befehl gibt eine Zeichenfolge zurück. Dies ist die GUID der Serviceinstanz, die Sie später noch zum Abrufen der Cluster-ID benötigen.
 
-2. Verwenden Sie mithilfe Ihres {{site.data.keyword.cloud_notm}}-API-Tokens die {{site.data.keyword.cloud_notm}} Compose-API, um die Serviceinstanz-ID für die Compose Enterprise `cluster_id` auszutauschen.
+## 3. Stellen Sie eine Datenbank in Ihrem Cluster mit dem Befehl `create-service` bereit:
 
-    ```
-    curl -s -X GET -H ‘authorization: Bearer ’$IBM_CLOUD_API_TOKEN -H ‘content-type: application/json’ https://composebroker-dashboard-public.eu-gb.mybluemix.net/api/2016-07/instances/$SERVICE_GUID/
-    ```
-
-    Das von diesem API-Aufruf zurückgegebene Objekt enthält den `cluster_id`-Wert, den Sie benötigen.
-
-## 4. Stellen Sie eine Datenbank in Ihrem Cluster mit dem Befehl `create-service` bereit:
-
-Nun, da Sie Ihre `cluster_id` haben, können Sie den Befehl `create-service` verwenden, um einen {{site.data.keyword.cloud_notm}} Compose-Datenbankservice zu erstellen und in Ihrem Compose Enterprise-Cluster bereitzustellen.
+Nachdem Sie jetzt über die Angabe für `cluster_service_instance_id` verfügen, können Sie den Befehl `create-service` verwenden, um einen {{site.data.keyword.cloud_notm}} Compose-Datenbankservice zu erstellen und in Ihrem {{site.data.keyword.composeEnterprise}}-Cluster bereitzustellen.
 
 
 ```
@@ -101,17 +84,22 @@ Der Name des neuen Compose-Datenbankservice, den Sie bereitstellen wollen.
 </dd>
 <dt>[-c PARAMETERS_AS_JSON] (erforderlich)</dt>
 <dd>
-Die Parameter werden als ein Array formatiert und sollten die folgenden Werte enthalten:
+Die Parameter werden als JSON-Objekt formatiert und sollten einen der folgenden Werte enthalten:
     <dl>
-    <dt>cluster_id (erforderlich)</dt>
+    <dt>cluster_service_instance_id</dt>
+    <dd>Die Cluster-Serviceinstanz-ID Ihres {{site.data.keyword.composeEnterprise}}-Clusters. Diesen Wert können Sie durch Ausführen von Schritt 2 in diesem Handbuchs abrufen.
+    </dd>
+    </dl>
+    <dl>
+    <dt>cluster_id</dt>
     <dd>Die Cluster-ID Ihres {{site.data.keyword.composeEnterprise}}-Clusters. Sie finden diesen Wert im Dashboard Ihrer {{site.data.keyword.composeEnterprise}}-Serviceinstanz.
     </dd>
     </dl>
 </dd>
 </dl>
 
-Zum Bereitstellen eines {{site.data.keyword.composeForElasticsearch}}-Service mit dem Namen 'myComposeForEnterpriseService' in einem {{site.data.keyword.composeEnterprise}}-Cluster, wobei die `cluster_id` den Wert '123456781234567812345678' hat, würden Sie zum Beispiel den folgenden Befehl verwenden:
+Zum Bereitstellen eines {{site.data.keyword.composeForElasticsearch}}-Service mit dem Namen 'myComposeForEnterpriseService' in einem {{site.data.keyword.composeEnterprise}}-Cluster, wobei `cluster_service_instance_id` den Wert '12345678-90ab-cdef-1234567890a' hat, würden Sie zum Beispiel den folgenden Befehl verwenden:
 
 ```
-bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_id": "123456781234567812345678"}'
+bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_service_instance_id": "12345678-90ab-cdef-1234567890a"}'
 ```

@@ -15,7 +15,7 @@ lastupdated: "2018-02-08"
 
 ## Implementando por meio do console do {{site.data.keyword.cloud_notm}}
 
-Se você já tiver criado um cluster do {{site.data.keyword.composeEnterprise_full}} usando o {{site.data.keyword.cloud}}, será possível especificar que seu novo banco de dados do Compose do {{site.data.keyword.cloud_notm}} seja provisionado no cluster. Selecione o nome do cluster do {{site.data.keyword.composeEnterprise}} na lista de locais disponíveis na lista suspensa *Selecionar local para implementação* quando estiver criando a nova instância de serviço de banco de dados do Compose do {{site.data.keyword.cloud_notm}}.
+Se você já tiver criado um cluster do {{site.data.keyword.composeEnterprise_full}} usando o {{site.data.keyword.cloud_notm}}, será possível especificar que seu novo banco de dados do {{site.data.keyword.cloud_notm}} do Compose seja provisionado para o cluster. Selecione o nome do cluster do {{site.data.keyword.composeEnterprise}} na lista de locais disponíveis na lista suspensa *Selecionar local para implementação* quando estiver criando a nova instância de serviço de banco de dados do Compose do {{site.data.keyword.cloud_notm}}.
 
 ## Implementando por meio da linha de comandos
 
@@ -36,18 +36,9 @@ Para criar uma nova instância de um serviço de banco de dados do Compose e pro
     bx target --cf
     ```
 
-## 2. Obter um token de API do {{site.data.keyword.cloud_notm}}.
+## 2. Obter o ID da instância de serviço do cluster
 
-Para usar a API do Compose do {{site.data.keyword.cloud_notm}}, que será necessária para executar a implementação de um banco de dados no cluster, você precisará de um Token de API do {{site.data.keyword.cloud_notm}}. Se ainda não tiver um token de API que possa usar, será possível criar um:
-
-1. Efetue login no Painel do [{{site.data.keyword.cloud_notm}}](console.{DomainName}.bluemix.net).
-2. Selecione **Gerenciar** -> **Segurança** -> **Chaves API do {{site.data.keyword.cloud_notm}}**
-3. Clique em **Criar**
-4. Insira um nome e uma descrição para sua chave e clique em **Criar**. Copie a chave gerada, ela será necessária mais tarde.
-
-## 3. Obter o ID do cluster
-
-1. Primeiro, você precisará obter o ID da instância de serviço para sua instância do {{site.data.keyword.composeEnterprise}}:
+1. Será necessário obter o ID da instância de serviço do cluster para sua instância do {{site.data.keyword.composeEnterprise}}:
 
     ```
     bx cf service COMPOSE_ENTERPRISE_SERVICE_NAME --guid
@@ -55,17 +46,9 @@ Para usar a API do Compose do {{site.data.keyword.cloud_notm}}, que será necess
 
     O comando retorna uma sequência. Este é o GUID da instância de serviço, que será necessário mais tarde para obter o ID do cluster.
 
-2. Usando o Token de API do {{site.data.keyword.cloud_notm}}, use a API do Compose do {{site.data.keyword.cloud_notm}} para trocar o ID da instância de serviço para o `cluster_id` do Compose Enterprise.
+## 3. Provisionar um banco de dados em seu cluster com o comando `create-service`:
 
-    ```
-    curl -s -X GET -H ‘authorization: Bearer ’$IBM_CLOUD_API_TOKEN -H ‘content-type: application/json’ https://composebroker-dashboard-public.eu-gb.mybluemix.net/api/2016-07/instances/$SERVICE_GUID/
-    ```
-
-    O objeto retornado por esta chamada API inclui o valor `cluster_id` que você está procurando.
-
-## 4. Provisione um banco de dados no cluster com o comando `create-service`:
-
-Agora que você tem seu `cluster_id`, será possível usar o comando `create-service` para criar um serviço de banco de dados do Compose do {{site.data.keyword.cloud_notm}} e implementá-lo no cluster do Compose Enterprise.
+Agora que você tem seu `cluster_service_instance_id`, é possível usar o comando `create-service` para criar um serviço de banco de dados do {{site.data.keyword.cloud_notm}} Compose e implementá-lo no cluster do {{site.data.keyword.composeEnterprise}}.
 
 
 ```
@@ -101,17 +84,22 @@ O nome do novo serviço de banco de dados do Compose que você deseja provisiona
 </dd>
 <dt>[-c PARAMETERS_AS_JSON] (necessário)</dt>
 <dd>
-Os parâmetros são formatados como uma matriz e devem conter os valores a seguir:
+Os parâmetros são formatados como um objeto JSON e devem conter um dos valores a seguir:
     <dl>
-    <dt>cluster_id (necessário)</dt>
+    <dt>cluster_service_instance_id</dt>
+    <dd>O ID da instância de serviço do cluster de seu cluster do {{site.data.keyword.composeEnterprise}}. É possível obter esse valor seguindo a etapa 2 deste guia.
+    </dd>
+    </dl>
+    <dl>
+    <dt>cluster_id</dt>
     <dd>O ID do cluster do cluster do {{site.data.keyword.composeEnterprise}}. É possível localizar esse valor no painel de sua instância de serviço do {{site.data.keyword.composeEnterprise}}.
     </dd>
     </dl>
 </dd>
 </dl>
 
-Por exemplo, para implementar um serviço {{site.data.keyword.composeForElasticsearch}} chamado 'myComposeForEnterpriseService' em um cluster do {{site.data.keyword.composeEnterprise}}, em que o `cluster_id` é '123456781234567812345678', você usaria o comando a seguir.
+Por exemplo, para implementar um serviço {{site.data.keyword.composeForElasticsearch}} chamado 'myComposeForEnterpriseService' em um cluster do {{site.data.keyword.composeEnterprise}}, em que o `cluster_service_instance_id` é '12345678-90ab-cdef-1234567890a', você usaria o comando a seguir.
 
 ```
-bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_id": "123456781234567812345678"}'
+bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_service_instance_id": "12345678-90ab-cdef-1234567890a"}'
 ```

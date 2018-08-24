@@ -51,6 +51,6 @@ _叢集詳細資料_ 畫面顯示 {{site.data.keyword.composeEnterprise}} 叢集
 
 大部分呼叫都需要叢集 ID，其可識別特定的部署實例。
 
-### 參考資訊
+### 參考資料
 
-如需如何在所有 {{site.data.keyword.cloud_notm}} Compose 服務中使用 {{site.data.keyword.cloud_notm}} Compose API 的其他文件及參照，請閱讀 [{{site.data.keyword.cloud_notm}} Compose API](https://www.compose.com/articles/the-ibm-cloud-compose-api/)。
+如需如何在所有 {{site.data.keyword.cloud_notm}} Compose 服務中使用 {{site.data.keyword.cloud_notm}} Compose API 的其他文件及參考資料，請閱讀 [{{site.data.keyword.cloud_notm}} Compose API](https://www.compose.com/articles/the-ibm-cloud-compose-api/)。

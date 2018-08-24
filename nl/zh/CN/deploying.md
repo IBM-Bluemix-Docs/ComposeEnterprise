@@ -15,7 +15,7 @@ lastupdated: "2018-02-08"
 
 ## 通过控制台 {{site.data.keyword.cloud_notm}} 进行部署
 
-如果您已经使用 {{site.data.keyword.cloud}} 创建了 {{site.data.keyword.composeEnterprise_full}} 集群，那么可以指定将新的 Compose {{site.data.keyword.cloud_notm}} 数据库供应到该集群中。创建新的 Compose {{site.data.keyword.cloud_notm}} 数据库服务实例时，请从*选择部署位置*下拉列表中的可用位置列表中选择 {{site.data.keyword.composeEnterprise}} 集群的名称。
+如果您已经使用 {{site.data.keyword.cloud_notm}} 创建了 {{site.data.keyword.composeEnterprise_full}} 集群，那么可以指定将新的 Compose {{site.data.keyword.cloud_notm}} 数据库供应到该集群中。创建新的 Compose {{site.data.keyword.cloud_notm}} 数据库服务实例时，请从*选择部署位置*下拉列表中的可用位置列表中选择 {{site.data.keyword.composeEnterprise}} 集群的名称。
 
 ## 通过命令行进行部署
 
@@ -36,18 +36,9 @@ lastupdated: "2018-02-08"
     bx target --cf
     ```
 
-## 2. 获取 {{site.data.keyword.cloud_notm}} API 令牌
+## 2. 获取集群服务实例标识
 
-要使用 {{site.data.keyword.cloud_notm}} Compose API（将数据库部署到集群时需要使用此 API），您将需要 {{site.data.keyword.cloud_notm}} API 令牌。如果您还没有可以使用的 API 令牌，可以创建 API 令牌：
-
-1. 登录到 [{{site.data.keyword.cloud_notm}}](console.{DomainName}.bluemix.net)“仪表板”。
-2. 选择**管理** -> **安全性** -> **{{site.data.keyword.cloud_notm}} API 密钥**。
-3. 单击**创建**。
-4. 输入密钥的名称和描述，然后单击**创建**。复制生成的密钥 - 稍后您将需要此密钥。
-
-## 3. 获取集群标识
-
-1. 首先，您需要获取 {{site.data.keyword.composeEnterprise}} 实例的服务实例标识：
+1. 您需要获取 {{site.data.keyword.composeEnterprise}} 实例的集群服务实例标识：
 
     ```
     bx cf service COMPOSE_ENTERPRISE_SERVICE_NAME --guid
@@ -55,17 +46,9 @@ lastupdated: "2018-02-08"
 
     该命令会返回一个字符串。这是服务实例的 GUID，稍后您需要将其用于获取集群标识。
 
-2. 使用 {{site.data.keyword.cloud_notm}} Compose API 通过 {{site.data.keyword.cloud_notm}} API 令牌将服务实例标识换成 Compose Enterprise `cluster_id`。
+## 3. 使用 `create-service` 命令将数据库供应到集群中：
 
-    ```
-    curl -s -X GET -H ‘authorization: Bearer ’$IBM_CLOUD_API_TOKEN -H ‘content-type: application/json’ https://composebroker-dashboard-public.eu-gb.mybluemix.net/api/2016-07/instances/$SERVICE_GUID/
-    ```
-
-    此 API 调用返回的对象包含您所需的 `cluster_id` 值。
-
-## 4. 使用 `create-service` 命令将数据库供应到集群中：
-
-现在，您有了 `cluster_id`，可以使用 `create-service` 命令来创建 {{site.data.keyword.cloud_notm}} Compose 数据库服务，并将其部署到 Compose Enterprise 集群中。
+现在，您有了 `cluster_service_instance_id`，可以使用 `create-service` 命令来创建 {{site.data.keyword.cloud_notm}} Compose 数据库服务，并将其部署到 {{site.data.keyword.composeEnterprise}} 集群中。
 
 
 ```
@@ -101,17 +84,22 @@ Compose 数据库服务的名称。值必须为以下其中一项：
 </dd>
 <dt>[-c PARAMETERS_AS_JSON]（必需）</dt>
 <dd>
-参数的格式设置为数组，并且应该包含以下值：
+参数的格式设置为 JSON 对象，并且应该包含以下任一值：
     <dl>
-    <dt>cluster_id（必需）</dt>
+    <dt>cluster_service_instance_id</dt>
+    <dd>{{site.data.keyword.composeEnterprise}} 集群的集群服务实例标识。您可以通过遵循本指南的步骤 2 来获取此值。
+    </dd>
+    </dl>
+    <dl>
+    <dt>cluster_id</dt>
     <dd>{{site.data.keyword.composeEnterprise}} 集群的集群标识。您可以在 {{site.data.keyword.composeEnterprise}} 服务实例的仪表板中找到此值。
     </dd>
     </dl>
 </dd>
 </dl>
 
-例如，要将名为“myComposeForEnterpriseService”的 {{site.data.keyword.composeForElasticsearch}} 服务部署到 {{site.data.keyword.composeEnterprise}} 集群（其中 `cluster_id` 为“123456781234567812345678”），应该使用以下命令。
+例如，要将名为“myComposeForEnterpriseService”的 {{site.data.keyword.composeForElasticsearch}} 服务部署到 {{site.data.keyword.composeEnterprise}} 集群（其中 `cluster_service_instance_id` 为“12345678-90ab-cdef-1234567890a”），应该使用以下命令。
 
 ```
-bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_id": "123456781234567812345678"}'
+bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_service_instance_id": "12345678-90ab-cdef-1234567890a"}'
 ```

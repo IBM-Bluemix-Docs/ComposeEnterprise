@@ -15,7 +15,7 @@ lastupdated: "2018-02-08"
 
 ## 從 {{site.data.keyword.cloud_notm}} 主控台部署
 
-如果已使用 {{site.data.keyword.cloud}} 建立一個 {{site.data.keyword.composeEnterprise_full}} 叢集，則您可以指定將新的 Compose {{site.data.keyword.cloud_notm}} 資料庫佈建至該叢集。當您建立新的 Compose {{site.data.keyword.cloud_notm}} 資料庫服務實例時，請從*選取部署位置* 下拉畫面中的可用位置清單選取 {{site.data.keyword.composeEnterprise}} 叢集的名稱。
+如果已使用 {{site.data.keyword.cloud_notm}} 建立一個 {{site.data.keyword.composeEnterprise_full}} 叢集，則您可以指定將新的 Compose {{site.data.keyword.cloud_notm}} 資料庫佈建至該叢集。當您建立新的 Compose {{site.data.keyword.cloud_notm}} 資料庫服務實例時，請從*選取部署位置* 下拉畫面中的可用位置清單選取 {{site.data.keyword.composeEnterprise}} 叢集的名稱。
 
 ## 從指令行部署
 
@@ -36,18 +36,9 @@ lastupdated: "2018-02-08"
     bx target --cf
     ```
 
-## 2. 取得 {{site.data.keyword.cloud_notm}} API 記號。
+## 2. 取得叢集服務實例 ID
 
-若要使用將資料庫部署至叢集時需要執行的「{{site.data.keyword.cloud_notm}} Compose API」，您將需要 {{site.data.keyword.cloud_notm}} API 記號。如果還沒有您可以使用的 API 記號，則可以建立一個：
-
-1. 登入「[{{site.data.keyword.cloud_notm}}](console.{DomainName}.bluemix.net) 儀表板」。
-2. 選取**管理** -> **安全** -> **{{site.data.keyword.cloud_notm}} API 金鑰**。
-3. 按一下**建立**。
-4. 輸入金鑰的名稱及說明，然後按一下**建立**。請複製產生的金鑰 - 稍後您將需要它。
-
-## 3. 取得叢集 ID
-
-1. 首先，您將需要取得 {{site.data.keyword.composeEnterprise}} 實例的服務實例 ID：
+1. 您將需要取得 {{site.data.keyword.composeEnterprise}} 實例的叢集服務實例 ID：
 
     ```
     bx cf service COMPOSE_ENTERPRISE_SERVICE_NAME --guid
@@ -55,17 +46,9 @@ lastupdated: "2018-02-08"
 
     此指令會傳回字串。這是服務實例的 GUID，而且稍後您將需要它來取得叢集 ID。
 
-2. 利用您的「{{site.data.keyword.cloud_notm}} API 記號」，使用 {{site.data.keyword.cloud_notm}} Compose API，將服務實例 ID 換成 Compose Enterprise `cluster_id`。
+## 3. 使用 `create-service` 指令，將資料庫佈建至您的叢集：
 
-    ```
-    curl -s -X GET -H ‘authorization: Bearer ’$IBM_CLOUD_API_TOKEN -H ‘content-type: application/json’ https://composebroker-dashboard-public.eu-gb.mybluemix.net/api/2016-07/instances/$SERVICE_GUID/
-    ```
-
-    這個 API 呼叫所傳回的物件包括之後的 `cluster_id` 值。
-
-## 4. 使用 `create-service` 指令，將資料庫佈建至您的叢集：
-
-既然有了 `cluster_id`，您就可以使用 `create-service` 指令，來建立 {{site.data.keyword.cloud_notm}} Compose 資料庫服務，並將它部署至 Compose Enterprise 叢集。
+既然有了 `cluster_service_instance_id`，您就可以使用 `create-service` 指令，來建立 {{site.data.keyword.cloud_notm}} Compose 資料庫服務，並將它部署至 {{site.data.keyword.composeEnterprise}} 叢集。
 
 
 ```
@@ -97,21 +80,25 @@ Compose 資料庫服務的名稱。此值必須是下列其中一個：
 </dd>
 <dt>service_instance（必要）</dt>
 <dd>
-您要佈建之新「Compose 資料庫」服務的名稱。
-</dd>
+您要佈建之新 Compose 資料庫服務的名稱。</dd>
 <dt>[-c PARAMETERS_AS_JSON]（必要）</dt>
 <dd>
-參數會格式化為陣列，而且應該包含下列值：
+參數會格式化為 JSON 物件，而且應該包含下列一個值：
     <dl>
-    <dt>cluster_id（必要）</dt>
+    <dt>cluster_service_instance_id</dt>
+    <dd>{{site.data.keyword.composeEnterprise}} 叢集的「叢集服務實例 ID」。您可以遵循本手冊的步驟 2 來取得此值。
+    </dd>
+    </dl>
+    <dl>
+    <dt>cluster_id</dt>
     <dd>{{site.data.keyword.composeEnterprise}} 叢集的「叢集 ID」。您可以在 {{site.data.keyword.composeEnterprise}} 服務實例的儀表板中找到此值。
     </dd>
     </dl>
 </dd>
 </dl>
 
-例如，若要將稱為 'myComposeForEnterpriseService' 的 {{site.data.keyword.composeForElasticsearch}} 服務部署至 {{site.data.keyword.composeEnterprise}} 叢集，其中 `cluster_id` 是 '123456781234567812345678'，您將使用下列指令。
+例如，若要將稱為 'myComposeForEnterpriseService' 的 {{site.data.keyword.composeForElasticsearch}} 服務部署至 {{site.data.keyword.composeEnterprise}} 叢集，其中 `cluster_service_instance_id` 是 '12345678-90ab-cdef-1234567890a'，您將使用下列指令。
 
 ```
-bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_id": "123456781234567812345678"}'
+bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_service_instance_id": "12345678-90ab-cdef-1234567890a"}'
 ```

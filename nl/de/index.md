@@ -14,7 +14,7 @@ lastupdated: "2018-04-14"
 # Informationen zu {{site.data.keyword.composeEnterprise}}
 {: #about-compose-enterprise}
 
-{{site.data.keyword.composeEnterprise_full}} für {{site.data.keyword.cloud}} kombiniert die Anforderungen von Unternehmen mit der Beweglichkeit eines Cloud-Datenbankservice und bietet "Database as a Service" auf dedizierten physischen Maschinen. Auf diese Weise stellt {{site.data.keyword.composeEnterprise}} die für Anwendungen auf Unternehmensebene erforderliche Sicherheit und Isolation bereit und ermöglicht gleichzeitig die Bereitstellung in nahezu jedem IBM Cloud-Rechenzentrum. 
+{{site.data.keyword.composeEnterprise_full}} für {{site.data.keyword.cloud}} kombiniert die Anforderungen von Unternehmen mit der Beweglichkeit eines Cloud-Datenbankservice und bietet 'Database as a Service' auf dedizierten physischen Maschinen. Auf diese Weise stellt {{site.data.keyword.composeEnterprise}} die für Anwendungen auf Unternehmensebene erforderliche Sicherheit und Isolation bereit und ermöglicht gleichzeitig die Bereitstellung in nahezu jedem IBM Cloud-Rechenzentrum.
 
 {{site.data.keyword.composeEnterprise}} erstellt einen Single-Tenant-Cluster mit Verschlüsselung im Ruhezustand. Ihnen wird so ein dedizierter Netzbetrieb und Leistung für Ihre Datenbankbereitstellungen sowie geografische Flexibilität bezüglich Rechenzentren geboten. Nachdem der Cluster erstellt ist, kann jede Datenbank, die über einen der anderen von {{site.data.keyword.cloud_notm}} angebotenen Compose-Datenbankservices erstellt wurde, in diesem Cluster bereitgestellt werden:
 

@@ -11,17 +11,17 @@ lastupdated: "2018-02-08"
 {:codeblock: .codeblock}
 {:pre: .pre}
 
-# Distribuzione di un database Compose in un cluster {{site.data.keyword.composeEnterprise}} 
+# Distribuzione di un database Compose in un cluster {{site.data.keyword.composeEnterprise}}
 
-## Distribuzione dalla console {{site.data.keyword.cloud_notm}} 
+## Distribuzione dalla console {{site.data.keyword.cloud_notm}}
 
-Se hai già creato un cluster {{site.data.keyword.composeEnterprise_full}} utilizzando {{site.data.keyword.cloud}}, puoi specificare che venga eseguito il provisioning del tuo nuovo database Compose {{site.data.keyword.cloud_notm}} nel cluster. Seleziona il nome del cluster {{site.data.keyword.composeEnterprise}} dall'elenco delle ubicazioni disponibili nel menu a discesa *Select Location for Deployment* quando stai creando la nuova istanza del servizio del database {{site.data.keyword.cloud_notm}}.
+Se hai già creato un cluster {{site.data.keyword.composeEnterprise_full}} utilizzando {{site.data.keyword.cloud_notm}}, puoi specificare che venga eseguito il provisioning del tuo nuovo database Compose {{site.data.keyword.cloud_notm}} nel cluster. Seleziona il nome del cluster {{site.data.keyword.composeEnterprise}} dall'elenco delle ubicazioni disponibili nel menu a discesa *Select Location for Deployment* quando stai creando la nuova istanza del servizio del database {{site.data.keyword.cloud_notm}}.
 
 ## Distribuzione dalla riga di comando
 
 Per creare una nuova istanza di un servizio del database Compose ed eseguirne il provisioning in un cluster {{site.data.keyword.composeEnterprise}}, dalla riga di comando dovrai prima installare l'interfaccia riga di comando (CLI) {{site.data.keyword.cloud_notm}}, poi ottenere ed utilizzare l'ID del cluster {{site.data.keyword.composeEnterprise}}.
 
-## 1. Configura l'interfaccia riga di comando (CLI) {{site.data.keyword.cloud_notm}}  
+## 1. Configura l'interfaccia riga di comando (CLI) {{site.data.keyword.cloud_notm}} 
 
 1. Scarica e installa lo strumento [CLI {{site.data.keyword.cloud_notm}}](https://console.bluemix.net/docs/cli/reference/bluemix_cli/download_cli.html).
 2. Accedi a {{site.data.keyword.cloud_notm}}
@@ -36,18 +36,9 @@ Per creare una nuova istanza di un servizio del database Compose ed eseguirne il
     bx target --cf
     ```
 
-## 2. Ottieni un token dell'API {{site.data.keyword.cloud_notm}}.
+## 2. Ottieni l'ID dell'istanza del servizio cluster
 
-Per utilizzare l'API {{site.data.keyword.cloud_notm}} Compose, di cui avrai bisogno per distribuire un database in un cluster, avrai bisogno di un token dell'API {{site.data.keyword.cloud_notm}}. Se non disponi ancora di un token dell'API che puoi utilizzare, puoi crearne uno:
-
-1. Accedi al dashboard [{{site.data.keyword.cloud_notm}}](console.{DomainName}.bluemix.net).
-2. Seleziona **Manage** -> **Security** -> **{{site.data.keyword.cloud_notm}} API Keys**
-3. Fai clic su **Create**
-4. Immetti un nome e una descrizione per la tua chiave e fai clic su **Create**. Copia la chiave generata - che ti servirà più tardi.
-
-## 3. Ottieni l'ID del cluster
-
-1. Per prima cosa, dovrai ottenere l'ID dell'istanza del servizio per la tua istanza {{site.data.keyword.composeEnterprise}}:
+1. Dovrai ottenere l'ID dell'istanza del servizio cluster per la tua istanza {{site.data.keyword.composeEnterprise}}:
 
     ```
     bx cf service COMPOSE_ENTERPRISE_SERVICE_NAME --guid
@@ -55,21 +46,13 @@ Per utilizzare l'API {{site.data.keyword.cloud_notm}} Compose, di cui avrai biso
 
     Il comando restituisce una stringa. Questo è il GUID dell'istanza del servizio e ne avrai bisogno più tardi per ottenere l'ID del cluster.
 
-2. Utilizzando il tuo token API {{site.data.keyword.cloud_notm}}, utilizza l'API {{site.data.keyword.cloud_notm}} per scambiare l'ID dell'istanza del servizio per il `cluster_id` Compose Enterprise.
+## 3. Esegui il provisioning di un database nel tuo cluster con il comando `create-service`:
 
-    ```
-    curl -s -X GET -H ‘authorization: Bearer ’$IBM_CLOUD_API_TOKEN -H ‘content-type: application/json’ https://composebroker-dashboard-public.eu-gb.mybluemix.net/api/2016-07/instances/$SERVICE_GUID/
-    ```
-
-    L'oggetto che viene restituito da questa chiamata API include il valore `cluster_id` che stai cercando.
-
-## 4. Esegui il provisioning di un database nel tuo cluster con il comando `create-service`:
-
-Ora che hai il `cluster_id` puoi utilizzare il comando `create-service` per creare un servizio del database {{site.data.keyword.cloud_notm}} Compose e distribuirlo nel tuo cluster Compose Enterprise.
+Ora che hai il tuo `cluster_service_instance_id` puoi utilizzare il comando `create-service` per creare un servizio del database {{site.data.keyword.cloud_notm}} Compose e distribuirlo nel tuo cluster {{site.data.keyword.composeEnterprise}}.
 
 
 ```
-bx cf create-service service_name service_plan service_instance [-c PARAMETERS_AS_JSON]
+bx cf create-service service_name service_plan service_instance [-c PARAMETRI_AS_JSON]
 ```
 
 Le opzioni del comando sono:
@@ -77,7 +60,7 @@ Le opzioni del comando sono:
 <dl>
 <dt>service_name (obbligatorio)</dt>
 <dd>
-Il nome del servizio del database Compose. Il valore deve essere uno dei seguenti.
+Il nome del servizio del database Compose. Il valore deve essere uno dei seguenti. 
     <ul>
         <li>`compose-for-elasticsearch`</li>
         <li>`compose-for-etcd`</li>
@@ -99,19 +82,24 @@ Il piano dei prezzi per il nuovo servizio. Questo valore deve essere `Enterprise
 <dd>
 Il nome del nuovo servizio Compose Database di cui vuoi eseguire il provisioning.
 </dd>
-<dt>[-c PARAMETERS_AS_JSON] (obbligatorio)</dt>
+<dt>[-c PARAMETRI_COME_JSON] (obbligatorio)</dt>
 <dd>
-I parametri vengono formattati come un array e devono contenere i seguenti valori:
+I parametri sono formattati come un oggetto JSON e devono contenere uno dei seguenti valori:
     <dl>
-    <dt>cluster_id (obbligatorio)</dt>
+    <dt>cluster_service_instance_id</dt>
+    <dd>L'ID dell'istanza del servizio cluster del tuo cluster {{site.data.keyword.composeEnterprise}}. Puoi ottenere questo valore attenendoti al passo 2 di questa guida.
+    </dd>
+    </dl>
+    <dl>
+    <dt>cluster_id</dt>
     <dd>L'ID cluster del tuo cluster {{site.data.keyword.composeEnterprise}}. Puoi trovare questo valore nel dashboard della tua istanza del servizio {{site.data.keyword.composeEnterprise}}.
     </dd>
     </dl>
 </dd>
 </dl>
 
-Ad esempio, per distribuire un servizio {{site.data.keyword.composeForElasticsearch}} denominato 'myComposeForEnterpriseService' in un cluster {{site.data.keyword.composeEnterprise}}, dove `cluster_id` è '123456781234567812345678', dorai utilizzare il seguente comando.
+Ad esempio, per distribuire un servizio {{site.data.keyword.composeForElasticsearch}} denominato 'myComposeForEnterpriseService' in un cluster {{site.data.keyword.composeEnterprise}}, dove `cluster_service_instance_id` è '12345678-90ab-cdef-1234567890a', utilizzerai il seguente comando.
 
 ```
-bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_id": "123456781234567812345678"}'
+bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_service_instance_id": "12345678-90ab-cdef-1234567890a"}'
 ```
