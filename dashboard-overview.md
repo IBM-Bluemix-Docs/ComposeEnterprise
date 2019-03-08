@@ -12,6 +12,7 @@ lastupdated: "2018-02-19"
 {:pre: .pre}
 
 # Dashboard Overview
+{: #dashboard-overview}
 
 You can manage your {{site.data.keyword.composeEnterprise_full}} service from the service dashboard.
 

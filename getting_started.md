@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-02-20"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
 ---
 
 {:new_window: target="_blank"}
@@ -25,7 +25,7 @@ You can provision a new {{site.data.keyword.composeEnterprise}} instance by usin
 
 ## Provisioning a {{site.data.keyword.composeEnterprise}} service instance from the {{site.data.keyword.cloud_notm}} console
 
-[Create a {{site.data.keyword.composeEnterprise}} instance](https://console.{DomainName}/catalog/services/compose-enterprise/), ensuring that you complete all the fields.
+[Create a {{site.data.keyword.composeEnterprise}} instance](https://{DomainName}/catalog/services/compose-enterprise/), ensuring that you complete all the fields.
 
 **Notes:**
 - The name of your {{site.data.keyword.composeEnterprise}} cluster can have a maximum length of 19 characters, and can contain only alphanumeric characters.
@@ -34,23 +34,23 @@ You can provision a new {{site.data.keyword.composeEnterprise}} instance by usin
 
 ## Provisioning a {{site.data.keyword.composeEnterprise}} service instance from the command line
 
-1. Download and install the [{{site.data.keyword.cloud_notm}} CLI](https://console.{DomainName}/docs/cli/reference/bluemix_cli/download_cli.html) tool.
+1. Download and install the [{{site.data.keyword.cloud_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli) tool.
 2. Log in to {{site.data.keyword.cloud_notm}}.
 
   ```
-  bx login
+  ibmcloud login
   ```
 
 3. Switch to the organization and space you want to use for your new Compose database service.
 
   ```
-  bx target --cf
+  ibmcloud target --cf
   ```
 
 4. Provision an instance of the service with the `create-service` command.
 
   ```
-  bx cf create-service service_name service_plan service_instance -c start_command
+  ibmcloud cf create-service service_name service_plan service_instance -c start_command
   ```
 
 ### Command options
@@ -100,10 +100,10 @@ You can provision a new {{site.data.keyword.composeEnterprise}} instance by usin
     </dd>
   </dl>
 
-### Sample `bx cf create-service` usage
+### Sample `ibmcloud cf create-service` usage
 
 ```
-bx cf create-service compose-enterprise Enterprise myComposeEnterpriseServiceName -c '{"contact_name": "myName", "contact_phone": "888-888-8888", "contact_email": "myEmail@ibm.com", "provider_region": "dallas", "cluster_name": "myClusterName123", "notes": "Bare Metal" }'
+ibmcloud cf create-service compose-enterprise Enterprise myComposeEnterpriseServiceName -c '{"contact_name": "myName", "contact_phone": "888-888-8888", "contact_email": "myEmail@ibm.com", "provider_region": "dallas", "cluster_name": "myClusterName123", "notes": "Bare Metal" }'
 ```
 
 When your {{site.data.keyword.composeEnterprise}} Cluster is available, you can provision Compose {{site.data.keyword.cloud_notm}} databases into the cluster and enjoy the benefits of auto-scaling databases with encryption at rest and in motion within an isolated cluster.
@@ -112,7 +112,7 @@ When your {{site.data.keyword.composeEnterprise}} Cluster is available, you can 
 
 Now that you have your {{site.data.keyword.composeEnterprise}} cluster is provisioned and configured, you are ready to deploy databases into the cluster.
 
-You can deploy a Compose {{site.data.keyword.cloud_notm}} database into a {{site.data.keyword.composeEnterprise}} cluster when you create a new database from any of the existing Compose database {{site.data.keyword.cloud_notm}} services. You can use the {{site.data.keyword.cloud_notm}} console or the command line. For more information about how to deploy databases, see [Deploying a Compose database into a {{site.data.keyword.composeEnterprise}} cluster](./deploying.html).
+You can deploy a Compose {{site.data.keyword.cloud_notm}} database into a {{site.data.keyword.composeEnterprise}} cluster when you create a new database from any of the existing Compose database {{site.data.keyword.cloud_notm}} services. You can use the {{site.data.keyword.cloud_notm}} console or the command line. For more information about how to deploy databases, see [Deploying a Compose database into a {{site.data.keyword.composeEnterprise}} cluster](/docs/services/ComposeEnterprise?topic=services/ComposeEnterprise-deploying).
 
 
 

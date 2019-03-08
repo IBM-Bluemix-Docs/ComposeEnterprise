@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-02-08"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
 ---
 
 {:new_window: target="_blank"}
@@ -12,6 +12,7 @@ lastupdated: "2018-02-08"
 {:pre: .pre}
 
 # Deploying a Compose database into a {{site.data.keyword.composeEnterprise}} cluster
+{: #deploying}
 
 ## Deploying from the {{site.data.keyword.cloud_notm}} console
 
@@ -23,18 +24,18 @@ To create a new instance of a Compose database service and provision it into a {
 
 ## Step 1. Set up the {{site.data.keyword.cloud_notm}} command line interface (CLI) 
 
-1. Download and install the [{{site.data.keyword.cloud_notm}} CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/download_cli.html) tool.
+1. Download and install the [{{site.data.keyword.cloud_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli) tool.
 
 2. Log in to {{site.data.keyword.cloud_notm}}
 
     ```
-    bx login
+    ibmcloud login
     ```
 
 3. Switch to the organization and space you want to use for your new Compose database service.
 
     ```
-    bx target --cf
+    ibmcloud target --cf
     ```
 
 ## Step 2. Get the cluster service instance ID
@@ -43,18 +44,18 @@ To create a new instance of a Compose database service and provision it into a {
 1. You need to get the cluster service instance ID for your {{site.data.keyword.composeEnterprise}} instance.
 
     ```
-    bx cf service COMPOSE_ENTERPRISE_SERVICE_NAME --guid
+    ibmcloud cf service COMPOSE_ENTERPRISE_SERVICE_NAME --guid
     ```
 
     The command returns a string, which is the GUID of the service instance. You use this value later to get the cluster ID value.
 
 ## Step 3. Provision a database into your cluster with the `create-service` command
 
-Now that you have your `cluster_service_instance_id` you can use the `create-service` command to create an {{site.data.keyword.cloud_notm}} Compose database service and deploy it into your {{site.data.keyword.composeEnterprise}} cluster.
+Now that you have your `cluster_service_instance_id`, you can use the `create-service` command to create an {{site.data.keyword.cloud_notm}} Compose database service and deploy it into your {{site.data.keyword.composeEnterprise}} cluster.
 
 
 ```
-bx cf create-service service_name service_plan service_instance [-c PARAMETERS_AS_JSON]
+ibmcloud cf create-service service_name service_plan service_instance [-c PARAMETERS_AS_JSON]
 ```
 
 ### Command options
@@ -103,5 +104,5 @@ The parameters are formatted as a JSON object and must contain either of the fol
 For example, to deploy a {{site.data.keyword.composeForElasticsearch}} service called 'myComposeForEnterpriseService' into a {{site.data.keyword.composeEnterprise}} cluster, where the `cluster_service_instance_id` is '12345678-90ab-cdef-1234567890a', you would use the following command.
 
 ```
-bx cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_service_instance_id": "12345678-90ab-cdef-1234567890a"}'
+ibmcloud cf create-service compose-for-elasticsearch Enterprise myComposeForEnterpriseService -c '{"cluster_service_instance_id": "12345678-90ab-cdef-1234567890a"}'
 ```
