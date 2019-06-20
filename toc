@@ -3,9 +3,6 @@
 
 <<<<<<< ours
 {: .toc subcollection="compose-enterprise" category="databases" audience="service" arm="3663046" href="/docs/services/ComposeEnterprise/index.html" path="services/ComposeEnterprise"}
-=======
-{: .toc subcollection="compose-enterprise" audience="service" category="databases" arm="3663046" href="/docs/services/ComposeEnterprise/index.html" path="services/ComposeEnterprise"}
->>>>>>> theirs
 Compose Enterprise
 
 	{: .navgroup id="learn"}
