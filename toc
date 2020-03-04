@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="compose-enterprise" category="databases" audience="service" arm="3663046" href="/docs/services/ComposeEnterprise/index.html" path="services/ComposeEnterprise"}
+{: .toc subcollection="compose-enterprise" audience="service" category="databases" href="/docs/ComposeEnterprise?topic=compose-enterprise-about" path="ComposeEnterprise"}
 Compose Enterprise
 
 	{: .navgroup id="learn"}
