@@ -22,13 +22,13 @@ lastupdated: "2019-06-20"
 
 Please note: Content is primarily hosted in the selected location. However, artifacts such as logs, backups and other systems support data, which can include Content, may be hosted in other Data Centers.
 
-- [{{site.data.keyword.composeForElasticsearch}}](https://{DomainName}/catalog/services/compose-for-elasticsearch)
-- [{{site.data.keyword.composeForEtcd}}](https://{DomainName}/catalog/services/compose-for-etcd)
-- [{{site.data.keyword.composeForJanusGraph}}](https://{DomainName}/catalog/services/compose-for-janusgraph)
-- [{{site.data.keyword.composeForMongoDB}}](https://{DomainName}/catalog/services/compose-for-mongodb)
-- [{{site.data.keyword.composeForMySQL}}](https://{DomainName}/catalog/services/compose-for-mysql)
-- [{{site.data.keyword.composeForPostgreSQL}}](https://{DomainName}/catalog/services/compose-for-postgresql)
-- [{{site.data.keyword.composeForRabbitMQ}}](https://{DomainName}/catalog/services/compose-for-rabbitmq)
-- [{{site.data.keyword.composeForRedis}}](https://{DomainName}/catalog/services/compose-for-redis)
-- [{{site.data.keyword.composeForRethinkDB}}](https://{DomainName}/catalog/services/compose-for-rethinkdb)
-- [{{site.data.keyword.composeForScyllaDB}}](https://{DomainName}/catalog/services/compose-for-scylladb)
+- [{{site.data.keyword.composeForElasticsearch}}](https://{DomainName}/catalog/compose-for-elasticsearch)
+- [{{site.data.keyword.composeForEtcd}}](https://{DomainName}/catalog/compose-for-etcd)
+- [{{site.data.keyword.composeForJanusGraph}}](https://{DomainName}/catalog/compose-for-janusgraph)
+- [{{site.data.keyword.composeForMongoDB}}](https://{DomainName}/catalog/compose-for-mongodb)
+- [{{site.data.keyword.composeForMySQL}}](https://{DomainName}/catalog/compose-for-mysql)
+- [{{site.data.keyword.composeForPostgreSQL}}](https://{DomainName}/catalog/compose-for-postgresql)
+- [{{site.data.keyword.composeForRabbitMQ}}](https://{DomainName}/catalog/compose-for-rabbitmq)
+- [{{site.data.keyword.composeForRedis}}](https://{DomainName}/catalog/compose-for-redis)
+- [{{site.data.keyword.composeForRethinkDB}}](https://{DomainName}/catalog/compose-for-rethinkdb)
+- [{{site.data.keyword.composeForScyllaDB}}](https://{DomainName}/catalog/compose-for-scylladb)

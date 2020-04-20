@@ -25,7 +25,7 @@ You can provision a new {{site.data.keyword.composeEnterprise}} instance by usin
 
 ## Provisioning a {{site.data.keyword.composeEnterprise}} service instance from the {{site.data.keyword.cloud_notm}} console
 
-[Create a {{site.data.keyword.composeEnterprise}} instance](https://{DomainName}/catalog/services/compose-enterprise/), ensuring that you complete all the fields.
+[Create a {{site.data.keyword.composeEnterprise}} instance](https://{DomainName}/catalog/compose-enterprise/), ensuring that you complete all the fields.
 
 **Notes:**
 - The name of your {{site.data.keyword.composeEnterprise}} cluster can have a maximum length of 19 characters, and can contain only alphanumeric characters.
@@ -112,7 +112,7 @@ When your {{site.data.keyword.composeEnterprise}} Cluster is available, you can 
 
 Now that you have your {{site.data.keyword.composeEnterprise}} cluster is provisioned and configured, you are ready to deploy databases into the cluster.
 
-You can deploy a Compose {{site.data.keyword.cloud_notm}} database into a {{site.data.keyword.composeEnterprise}} cluster when you create a new database from any of the existing Compose database {{site.data.keyword.cloud_notm}} services. You can use the {{site.data.keyword.cloud_notm}} console or the command line. For more information about how to deploy databases, see [Deploying a Compose database into a {{site.data.keyword.composeEnterprise}} cluster](/docs/services/ComposeEnterprise?topic=services/ComposeEnterprise-deploying).
+You can deploy a Compose {{site.data.keyword.cloud_notm}} database into a {{site.data.keyword.composeEnterprise}} cluster when you create a new database from any of the existing Compose database {{site.data.keyword.cloud_notm}} services. You can use the {{site.data.keyword.cloud_notm}} console or the command line. For more information about how to deploy databases, see [Deploying a Compose database into a {{site.data.keyword.composeEnterprise}} cluster](/docs/ComposeEnterprise?topic=ComposeEnterprise-deploying).
 
 
 
