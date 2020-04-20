@@ -112,7 +112,7 @@ When your {{site.data.keyword.composeEnterprise}} Cluster is available, you can 
 
 Now that you have your {{site.data.keyword.composeEnterprise}} cluster is provisioned and configured, you are ready to deploy databases into the cluster.
 
-You can deploy a Compose {{site.data.keyword.cloud_notm}} database into a {{site.data.keyword.composeEnterprise}} cluster when you create a new database from any of the existing Compose database {{site.data.keyword.cloud_notm}} services. You can use the {{site.data.keyword.cloud_notm}} console or the command line. For more information about how to deploy databases, see [Deploying a Compose database into a {{site.data.keyword.composeEnterprise}} cluster](/docs/ComposeEnterprise?topic=ComposeEnterprise-deploying).
+You can deploy a Compose {{site.data.keyword.cloud_notm}} database into a {{site.data.keyword.composeEnterprise}} cluster when you create a new database from any of the existing Compose database {{site.data.keyword.cloud_notm}} services. You can use the {{site.data.keyword.cloud_notm}} console or the command line. For more information about how to deploy databases, see [Deploying a Compose database into a {{site.data.keyword.composeEnterprise}} cluster](/docs/ComposeEnterprise?topic=compose-enterprise-deploying).
 
 
 
